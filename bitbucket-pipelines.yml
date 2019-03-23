@@ -1,0 +1,19 @@
+# This is a sample build configuration for Docker.
+# Check our guides at https://confluence.atlassian.com/x/O1toN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: atlassian/default-image:2
+
+pipelines:
+  custom:
+    AutoBackup:
+      - step:
+          script:
+            - echo "AutoBackup Start."
+  default:
+    - step:
+        services:
+         - docker
+        script: 
+          - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD
